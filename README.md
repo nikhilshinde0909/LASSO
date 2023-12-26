@@ -1,5 +1,5 @@
 # LASSO Feature Selection
-LASSO is machine learning algorithm used to select the features based on LASSO scores. Here we report a python code to select potential features such as lncRNAs or transcription factors (TFs) associated with trait development using normalized RNA-seq counts.
+LASSO is statistical modeling and machine learning approach used to estimate the relationships between variables, make prediction and select the potential features. Here we report a python code named LASSO_PY; to select potential features such as lncRNAs or transcription factors (TFs) associated with trait using normalized RNA-seq counts.
 
 # What we need ?
 We needed normalized RNA-seq counts for TFs and lncRNAs or TFs and miRNAs in TSV matrix
