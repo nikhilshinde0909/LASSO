@@ -10,13 +10,11 @@ import matplotlib.pyplot as plt
 ## Define help
 def print_help():
     print("Usage: python LASSO_feature_selection.py <TF_matrix> <Lnc_matrix> <number of features>")
-
-# Check if help flag is present
-if len(sys.argv) == 3 and sys.argv[1] in ['-h', '--help']:
+    
+if len(sys.argv) == 2 and sys.argv[1] in ['-h', '--help']:
     print_help()
     sys.exit(0)
-
-# Check if correct number of arguments is provided
+    
 if len(sys.argv) != 4:
     print("Invalid number of arguments!")
     print_help()
@@ -24,9 +22,9 @@ if len(sys.argv) != 4:
 
 TF_matrix = sys.argv[1]
 Lnc_matrix = sys.argv[2]
-top_features = sys.argv[3]
+num_features= int(sys.argv[3])
 
-def lasso_feature_selection(TF_matrix, Lnc_matrix, alpha=0.01, top_features):
+def lasso_feature_selection(TF_matrix, Lnc_matrix, top_features=num_features, alpha=0.01):
     df_tf = pd.read_table(TF_matrix, sep='\t', index_col=0)
     df_lnc = pd.read_table(Lnc_matrix, sep='\t', index_col=0)
     df_tf = df_tf.T
@@ -49,7 +47,7 @@ def lasso_feature_selection(TF_matrix, Lnc_matrix, alpha=0.01, top_features):
     plt.scatter(y_test, y_pred, alpha=0.7)
 
     selected_features_indices = np.where(np.abs(lasso.coef_) != 0)[0]
-    
+
     if top_features > len(selected_features_indices):
         top_features = len(selected_features_indices)
         print(f"Reducing top_features to {top_features} as it exceeds the available features.")
@@ -63,8 +61,6 @@ def lasso_feature_selection(TF_matrix, Lnc_matrix, alpha=0.01, top_features):
 
     selected_feature_names = np.unique(selected_feature_names)
 
-    print( f"{len(selected_feature_names)} lncRNA/TFs were selected using LASSO: ",", ".join(selected_feature_names))
-
-
-    # Run the lasso_feature_selection function with the provided file paths
-    lasso_feature_selection(TF_matrix, Lnc_matrix, top_features)
+    print(f"{len(selected_feature_names)} lncRNA/TFs were selected using LASSO: {', '.join(selected_feature_names)}")
+     
+lasso_feature_selection(TF_matrix, Lnc_matrix, top_features=num_features)
