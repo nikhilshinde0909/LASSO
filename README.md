@@ -1,4 +1,4 @@
-# LASSO: Machine Learning based Feature Selection
+# LASSO: Machine Learning based Feature Selection using RNA-seq Counts
 LASSO is statistical modeling and machine learning approach used to estimate the relationships between variables, make prediction and select the potential features. Here we report a python code named LASSO_PY; to select potential features such as lncRNAs or transcription factors (TFs) associated with trait using normalized RNA-seq counts.
 
 # What we need ?
